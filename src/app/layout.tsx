@@ -8,15 +8,12 @@ export const metadata: Metadata = {
   title: 'Island Nomad',
   description: 'Island Nomad',
 }
-import Navbar from './Navbar';
 import { ReduxProvider } from '@/redux/Provider'
+import { childrenPropType } from '@/types'
 
+import Navbar from './Navbar';
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: childrenPropType) {
   return (
     <html lang="en">
       <body className={inter.className}>

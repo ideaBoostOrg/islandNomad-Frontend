@@ -1,7 +1,6 @@
 import React from 'react';
 
 const FilterCard = (props:any) => {
-    console.log(props.headingGroupName);
 
     const headingGroupName = props.headingGroupName;
     const checkBoxDetails = props.checkBoxDetails;

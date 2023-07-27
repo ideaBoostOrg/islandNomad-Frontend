@@ -5,6 +5,7 @@ import Container from "@/components/Container"
 import SearchBar from "@/components/searchBar"
 import ReservationDetailCard from "@/components/reservationDetailCard"
 import FilterCard from "@/components/filterCard"
+import FilterGroupPrice from "@/components/filterGroupPrice"
 
 export default function Home() {
 
@@ -45,6 +46,7 @@ export default function Home() {
               headingGroupName="Your Previous Filters"
               checkBoxDetails={checkBoxDetails1}
             />
+            <FilterGroupPrice />
             <FilterCard
               headingGroupName="Popular Filters"
               checkBoxDetails={checkBoxDetails2}
@@ -60,8 +62,11 @@ export default function Home() {
           </div>
         </div>
         <div className="w-full ml-5">
-          <ReservationDetailCard />
-          <ReservationDetailCard />
+          {Array.from({ length: 5 }, (_, index) => (
+            <>
+              <ReservationDetailCard />
+            </>
+          ))}
         </div>
       </div>
     </Container>

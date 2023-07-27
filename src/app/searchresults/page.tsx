@@ -14,7 +14,7 @@ export default function Home() {
     { label: '5 stars', value: '116', checked: true },
     { label: 'Free cancellation', value: '76', checked: true },
   ];
-  const checkBoxDetails2= [
+  const checkBoxDetails2 = [
     { label: 'No prepayment', value: '221', checked: true },
     { label: '5 stars', value: '116', checked: true },
     { label: 'Book without credit card', value: '76', checked: true },
@@ -40,10 +40,10 @@ export default function Home() {
         <div className="w-1/3">
           <div>map here</div>
           <div>
-            <h2 className="font-bold my-4">Filter by:</h2>
+            <h2 className="font-bold mt-4 border-2 rounded-t-lg p-2">Filter by:</h2>
             <FilterCard
               headingGroupName="Your Previous Filters"
-              checkBoxDetails = {checkBoxDetails1}
+              checkBoxDetails={checkBoxDetails1}
             />
             <FilterCard
               headingGroupName="Popular Filters"

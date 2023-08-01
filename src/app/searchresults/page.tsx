@@ -6,6 +6,7 @@ import SearchBar from "@/components/searchBar"
 import ReservationDetailCard from "@/components/reservationDetailCard"
 import FilterCard from "@/components/filterCard"
 import FilterGroupPrice from "@/components/filterGroupPrice"
+import { Dropdown } from 'flowbite-react';
 
 export default function Home() {
 
@@ -39,7 +40,9 @@ export default function Home() {
       <SearchBar />
       <div className="flex flex-row">
         <div className="w-1/3">
-          <div>map here</div>
+          <div className="mt-8">
+            <iframe width="100%" height="200px" src="https://maps.google.com/maps?q=<?php echo $gig['addressLine1'] . ', ' . $gig['addressLine2'] . ', ' . $gig['city'] . ', ' . $gig['district'] ?>&output=embed&fullscreen=true&zoom=20"></iframe>
+          </div>
           <div>
             <h2 className="font-bold mt-4 border-2 rounded-t-lg p-2">Filter by:</h2>
             <FilterCard
@@ -62,10 +65,29 @@ export default function Home() {
           </div>
         </div>
         <div className="w-full ml-5">
+          <div className="mt-8 mb-2">
+            <h3 className="text-lg font-bold mb-3">Nuwara Eliya- 234 properties found</h3>
+            <Dropdown
+              label="Sort by: Our top picks"
+              style={{
+                borderRadius: '26px',
+                backgroundColor: '#F9F9F9',
+                border: '1px solid var(--gary-2, #5C7177)',
+                color: 'var(--primary, #0E2D34)'
+              }}
+            >
+              <Dropdown.Item>Our top picks</Dropdown.Item>
+              <Dropdown.Item>Price (lowest first)</Dropdown.Item>
+              <Dropdown.Item>Best reviewed and lowest price</Dropdown.Item>
+              <Dropdown.Item>Propety rating (high to low)</Dropdown.Item>
+              <Dropdown.Item>Propety rating (low to high)</Dropdown.Item>
+            </Dropdown>
+          </div>
           {Array.from({ length: 5 }, (_, index) => (
-            <>
+            // eslint-disable-next-line react/jsx-key
+            <div>
               <ReservationDetailCard />
-            </>
+            </div>
           ))}
         </div>
       </div>

@@ -30,7 +30,7 @@ function HotelPage() {
                         </div>
 
                         <div className="flex flex-col mb-2">
-                            <button className="bg-blue-700 text-white py-2 mt-2">Search</button>
+                            <button className="bg-primary-dark text-white py-2 mt-2">Search</button>
                         </div>
 
                     </div>
@@ -70,7 +70,7 @@ function HotelPage() {
                         <br></br><br></br> The area is popular for walking tours, and bike hire and car hire are available at The Grand Hills. Guests can also relax in the shared lounge area. Kandy railway station is 5.9 km from the accommodation, while Bogambara Stadium is 6.6 km away. The nearest airport is Katugastota Polgolla Reservoir Seaplane Base, 11 km from The Grand Hills, and the property offers a paid airport shuttle service.
                         <br></br><br></br>Couples particularly like the location — they rated it 9.3 for a two-person trip.</p>
                 </div>
-                <div className="bg-blue-700 rounded-lg p-4">
+                <div className="bg-primary-dark rounded-lg p-4">
                     <h2 className="font-semibold mb-4 text-white">Popular facilities</h2>
                     <div className="flex flex-wrap gap-3">
                         {
@@ -89,7 +89,7 @@ function HotelPage() {
                 <div className="flex sticky top-0 z-[100] bg-white pt-6 border-b pb-4 justify-between item-start">
                     <h1 className="text-2xl font-bold">Guest Reviews</h1>
                     <div className="flex gap-4">
-                        <h3 className="row-span-2 px-3 flex justify-center items-center text-white bg-blue-700 rounded-lg">8.0</h3>
+                        <h3 className="row-span-2 px-3 flex justify-center items-center text-white bg-primary-dark rounded-lg">8.0</h3>
                         <div className="flex flex-col">
                             <p className="font-semibold">{'Good'}</p>
                             <p className="text-sm text-gray-700">{10} reviews</p>
@@ -106,7 +106,7 @@ function HotelPage() {
                                         <p className="font-semibold">{category.value}%</p>
                                     </div>
                                     <div className="w-full h-3 rounded-xl bg-gray-200 overflow-hidden">
-                                        <div className="h-full rounded-xl bg-blue-700" style={{ width: `${category.value}%` }}></div>
+                                        <div className="h-full rounded-xl bg-primary-dark" style={{ width: `${category.value}%` }}></div>
                                     </div>
                                 </div>
                             ))
@@ -213,7 +213,7 @@ function HotelPage() {
                                             <p className="text-md">{review.description}</p>
                                         </div>
                                         <div className="flex justify-between">
-                                            <div className="w-10 h-10 flex justify-center items-center bg-blue-700 text-white rounded-lg text-sm">
+                                            <div className="w-10 h-10 flex justify-center items-center bg-primary-dark text-white rounded-lg text-sm">
                                                 {review.rating}
                                             </div>
                                             <div className="flex gap-6">

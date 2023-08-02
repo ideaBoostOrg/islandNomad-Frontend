@@ -17,6 +17,7 @@ module.exports = {
       },
       colors: {
         'navbar-background': '#0E2D34',
+        'primary-dark': '#0E2D34',
       },
     },
   },

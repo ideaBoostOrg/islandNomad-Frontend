@@ -7,7 +7,8 @@ import ReservationDetailCard from "@/components/reservationDetailCard"
 import FilterCard from "@/components/filterCard"
 import FilterGroupPrice from "@/components/filterGroupPrice"
 import { Dropdown } from 'flowbite-react';
-
+import { Breadcrumb } from 'flowbite-react';
+import { HiHome } from 'react-icons/hi';
 export default function Home() {
 
   const dispatch = useAppDispatch()
@@ -38,12 +39,28 @@ export default function Home() {
   return (
     <Container>
       <SearchBar />
+      <Breadcrumb
+        aria-label="Solid background breadcrumb example"
+        className="bg-gray-50 px-5 py-3 dark:bg-gray-900 hide-on-filter-screens"
+      >
+        <Breadcrumb.Item
+          href="./.."
+          icon={HiHome}
+        >
+          <p>
+            Home
+          </p>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item href="#">
+          Search results
+        </Breadcrumb.Item>
+      </Breadcrumb>
       <div className="flex flex-row">
-        <div className="w-1/3">
+        <div className="flex flex-col w-1/3 hide-on-filter-screens">
           <div className="mt-8">
             <iframe width="100%" height="200px" src="https://maps.google.com/maps?q=<?php echo $gig['addressLine1'] . ', ' . $gig['addressLine2'] . ', ' . $gig['city'] . ', ' . $gig['district'] ?>&output=embed&fullscreen=true&zoom=20"></iframe>
           </div>
-          <div>
+          <div className="flex flex-col">
             <h2 className="font-bold mt-4 border-2 rounded-t-lg p-2">Filter by:</h2>
             <FilterCard
               headingGroupName="Your Previous Filters"

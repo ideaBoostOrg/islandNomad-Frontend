@@ -41,7 +41,7 @@ function HotelPage() {
 
                 <div className=" lg:col-span-3">
                     <div className="">
-                        <h3 className="text-2xl font-bold mb-1">The Grand Hill</h3>
+                        <h3 className="text-2xl font-bold mb-1">The Grand Hill - Bedrooms</h3>
                         <p className="text-sm text-gray-600">The Grand Hills, No. A 240 / 169 Springhill Estate, Bowala, Kandy, 20000 Kandy</p>
                         <Link href="#" className="text-sm text-blue-600 font-semibold">Show on map</Link>
                     </div>

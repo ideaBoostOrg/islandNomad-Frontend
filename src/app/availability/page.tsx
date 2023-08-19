@@ -35,16 +35,16 @@ function AvailabilityPage() {
                     </Breadcrumb.Item>
                 </Breadcrumb>
 
-                <div className="flex gap-2 mb-4 mt-8">
+                <div className="flex  mb-4 mt-8 border-b border-primary-dark">
                     <button
-                        className={`px-4 py-2 flex-grow text-blue-600 font-semibold bg-blue-100 hover:bg-blue-600 hover:text-white transition duration-200 ease-in-out 
-                        ${tab === 0 ? 'bg-blue-600 text-white' : ''}
+                        className={`px-4 py-2 flex-grow text-dark font-semibold bg-gray-100 hover:bg-primary-dark  hover:text-white transition duration-200 ease-in-out 
+                        ${tab === 0 ? 'bg-primary-dark text-white' : ''}
                         `}
                         onClick={changeTab}
                     >Seats</button>
                     <button
-                        className={`px-4 py-2 flex-grow text-blue-600 font-semibold bg-blue-100 hover:bg-blue-600 hover:text-white transition duration-200 ease-in-out 
-                        ${tab === 1 ? 'bg-blue-600 text-white' : ''}
+                        className={`px-4 py-2 flex-grow text-dark font-semibold bg-gray-100 hover:bg-primary-dark  hover:text-white transition duration-200 ease-in-out 
+                        ${tab === 1 ? 'bg-primary-dark text-white' : ''}
                         `}
                         onClick={changeTab}
                     >Bedrooms</button>

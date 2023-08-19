@@ -27,16 +27,16 @@ function ConfirmationPage() {
                                 <BiCalendarAlt className="text-2xl" />
                                 <div className=" px-2">
                                     <p className="text-sm text-gray-500">Check in</p>
-                                    <p className="font-semibold text-base ">Mon, 20 Sep 2021</p>
-                                    <p>08:00</p>
+                                    <p className="font-semibold text-base ">Mon, 20 Sep 2023</p>
+                                    <p>08:00 am</p>
                                 </div>
                             </div>
                             <div className="flex grow items-center gap-3 mb-6 border p-4 rounded-lg shadow">
                                 <BiCalendarAlt className="text-2xl" />
                                 <div className=" px-2">
                                     <p className="text-sm text-gray-500">Check out</p>
-                                    <p className="font-semibold text-base ">Mon, 22 Sep 2021</p>
-                                    <p>08:00</p>
+                                    <p className="font-semibold text-base ">Mon, 22 Sep 2023</p>
+                                    <p>08:00 am</p>
                                 </div>
                             </div>
                         </div>

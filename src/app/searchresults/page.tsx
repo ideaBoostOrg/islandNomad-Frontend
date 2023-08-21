@@ -41,7 +41,7 @@ export default function Home() {
       <SearchBar />
       <Breadcrumb
         aria-label="Solid background breadcrumb example"
-        className="bg-gray-50 px-5 py-3 dark:bg-gray-900 hide-on-filter-screens"
+        className="bg-gray-50 px-5 py-3 dark:bg-gray-900 max-sm:hidden"
       >
         <Breadcrumb.Item
           href="./.."
@@ -56,7 +56,7 @@ export default function Home() {
         </Breadcrumb.Item>
       </Breadcrumb>
       <div className="flex flex-row">
-        <div className="flex flex-col w-1/3 hide-on-filter-screens">
+        <div className="flex flex-col mr-5 w-1/3 max-sm:hidden">
           <div className="mt-8">
             <iframe width="100%" height="200px" src="https://maps.google.com/maps?q=<?php echo $gig['addressLine1'] . ', ' . $gig['addressLine2'] . ', ' . $gig['city'] . ', ' . $gig['district'] ?>&output=embed&fullscreen=true&zoom=20"></iframe>
           </div>
@@ -81,8 +81,8 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="w-full ml-5">
-          <div className="mt-8 mb-2">
+        <div className="w-full ">
+          <div className="mt-8 mb-2 max-sm:hidden">
             <h3 className="text-lg font-bold mb-3">Nuwara Eliya- 234 properties found</h3>
             <Dropdown
               label="Sort by: Our top picks"

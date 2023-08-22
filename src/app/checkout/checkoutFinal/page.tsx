@@ -1,8 +1,10 @@
 "use client";
 import React from "react";
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import countryData from "./countryCodes.json";
+
+import { useRouter } from "next/navigation";
 
 interface Country {
   name: string;
@@ -10,6 +12,9 @@ interface Country {
 }
 
 const SideBySideForms = () => {
+
+  const router = useRouter()
+
   const [selectedCountry, setSelectedCountry] = useState<string>("");
 
   const handleCountrySelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -126,7 +131,7 @@ const SideBySideForms = () => {
               Needed by the property to validate your booking
             </label>
             <div className="mb-2">
-              
+
               <div className="mt-1">
                 <label className="inline-flex items-center">
                   <input
@@ -142,44 +147,48 @@ const SideBySideForms = () => {
         </div>
 
         <div className="max-w-3xl mx-auto mt-8 p-4 bg-white rounded-lg">
-          
+
           <form>
             <div className="mb-2">
-              
+
               <div className="mt-1">
-                
-                  <input
-                    type="checkbox"
-                    className="form-checkbox h-4 w-4 text-indigo-600"
-                    name="rentCar"
-                  />
-                  <span className="ml-2 text-sm">Yes, I consent to receiving marketing emails including deals, travel inspiration and updates on products and services from islandNomad.</span>
-                
+
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-4 w-4 text-indigo-600"
+                  name="rentCar"
+                />
+                <span className="ml-2 text-sm">Yes, I consent to receiving marketing emails including deals, travel inspiration and updates on products and services from islandNomad.</span>
+
               </div>
             </div>
 
 
             <div className="mb-2">
-              
+
               <div className="mt-1">
-                
-                  <input
-                    type="checkbox"
-                    className="form-checkbox h-4 w-4 text-indigo-600"
-                    name="rentCar"
-                  />
-                  <span className="ml-2 text-sm">Yes, I consent to receiving marketing emails from Booking.com about transport deals from Booking.com Transport Limited.</span>
-                
+
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-4 w-4 text-indigo-600"
+                  name="rentCar"
+                />
+                <span className="ml-2 text-sm">Yes, I consent to receiving marketing emails from Booking.com about transport deals from Booking.com Transport Limited.</span>
+
               </div>
             </div>
           </form>
         </div>
 
-        
+
 
         <div className="mt-auto flex justify-end">
           <button
-            type="submit"
+            onClick={
+              () => {
+                router.push("/confirm")
+              }
+            }
             className="bg-indigo-600 text-white px-14 py-3 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 mt-3 self-end"
           >
             Complete Booking

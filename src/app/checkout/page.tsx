@@ -1,6 +1,7 @@
-import React from "react";
-
+'use client'
+import { useRouter } from "next/navigation"
 const SideBySideForms = () => {
+  const router = useRouter();
   return (
     <div className="max-w-6xl mx-auto mt-2 flex flex-col md:flex-row md:space-x-4">
       {/* Left Form (1/3 screen size) */}
@@ -118,7 +119,7 @@ const SideBySideForms = () => {
               </div>
               <div className="w-1/2 ml-2">
                 <label className="block text-sm font-medium text-gray-700">
-                Last Name <b className="text-red-500">*</b>
+                  Last Name <b className="text-red-500">*</b>
                 </label>
                 <input
                   type="text"
@@ -209,14 +210,16 @@ const SideBySideForms = () => {
             </div>
           </form>
         </div>
-        
+
         <div className="mt-auto flex justify-end">
-        <button
-          type="submit"
-          className="bg-indigo-600 text-white px-14 py-3 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 mt-3 self-end"
-        >
-          Next:Final Details 
-        </button>
+          <button
+            className="bg-indigo-600 text-white px-14 py-3 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-300 mt-3 self-end"
+            onClick={() => {
+              router.push('/checkout/checkoutFinal')
+            }}
+          >
+            Next:Final Details
+          </button>
         </div>
       </div>
     </div>

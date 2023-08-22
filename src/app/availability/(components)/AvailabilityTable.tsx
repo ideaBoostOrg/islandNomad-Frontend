@@ -1,6 +1,10 @@
-import React from 'react'
+'use client'
+import { useRouter } from "next/navigation"
 
 function AvailabilityTable() {
+
+    const router = useRouter()
+
     return (
         <>
             <div className="flex sticky top-0 z-[100] bg-white pt-6 border-b pb-4 justify-between item-start">
@@ -13,6 +17,25 @@ function AvailabilityTable() {
                     </div>
                 </div> */}
             </div>
+
+            <div className="">
+                <div className="grid grid-cols-3">
+                    <div className="">Availability table content goes here</div>
+                    <div className="">b</div>
+                    <div className=" p-4">
+                        <button
+                            className="px-4 py-2 bg-primary-dark text-white rounded-lg"
+                            onClick={
+                                () => {
+                                    // setModalOpen(true)
+                                    router.push('/checkout')
+                                }
+                            }
+                        >Reserve</button>
+                    </div>
+                </div>
+            </div>
+
         </>
     )
 }

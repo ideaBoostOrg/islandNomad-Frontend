@@ -1,12 +1,18 @@
+'use client'
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+
 const SearchBar = () => {
 
     const [searchInput1, setSearchInput1] = useState('');
     const [searchInput2, setSearchInput2] = useState('');
     const [searchInput3, setSearchInput3] = useState('');
 
+    const router = useRouter();
+
     const handleSearch = () => {
-        console.log( searchInput1, searchInput2, searchInput3);
+        console.log(searchInput1, searchInput2, searchInput3);
+        router.push(`/searchresults?location=${searchInput1}&checkin=${searchInput2}&count=${searchInput3}`);
     };
 
     return (

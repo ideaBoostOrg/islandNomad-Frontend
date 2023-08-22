@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Reviews from "@/components/reviews";
+import Image from "next/image";
+import Link from "next/link";
 const ReservationDetailCard = () => {
   const images = {
     src: "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
     alt: "Image 1",
   };
   const [visible, setVisible] = useState(false);
-  const handleClick = ()=>{
+  const handleClick = () => {
     setVisible(!visible);
   };
   return (
@@ -16,15 +18,18 @@ const ReservationDetailCard = () => {
           href="#"
           className="flex flex-col items-start bg-white border border-gray-200 rounded-lg shadow md:flex-row sm:flex-row md:max-w-max hover:border-[#187B9273] hover:bg-[#187B9214] dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 max-sm:flex-row"
         >
-          <img
+          <Image
             src={images.src}
+            width={1887}
+            height={2831}
             alt={images.alt}
+
             className="object-cover w-11/12 m-3 mb-10 rounded-lg h-[15rem] max-sm:h-[8rem] max-sm:w-32"
           />
           <div className="flex flex-row md:flex-row sm:flex-row max-sm:flex-col">
             <div className="flex flex-col justify-between p-2 leading-normal mt-1 w-full">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-[#187B92] dark:text-white max-sm:text-sm">
-              Twin Villa Red
+                Twin Villa Red
               </h5>
 
               <div className="inline-flex">
@@ -79,8 +84,8 @@ const ReservationDetailCard = () => {
               </div>
 
               <div className="max-sm:hidden">
-                <a
-                  href="#"
+                <Link
+                  href={`/availability?type=seat&place=the-grand-hill`}
                   className="inline-flex items-center justify-end px-3 py-2 w-max text-sm font-medium text-center text-white bg-[#FF5722] rounded-lg hover:bg-orange-600 focus:ring-4 focus:outline-none"
                 >
                   See availability
@@ -99,7 +104,7 @@ const ReservationDetailCard = () => {
                       d="m1 9 4-4-4-4"
                     />
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -107,7 +112,7 @@ const ReservationDetailCard = () => {
         </a>
       </div>
       <div>
-        {visible  && <Reviews />}
+        {visible && <Reviews />}
       </div>
     </>
 

@@ -1,13 +1,20 @@
+import Reviews from "@/components/reviews";
 import { reviews } from "@/data/availabilityPage"
 import Image from "next/image"
+import { useState } from "react";
 import { BiBed, BiTimeFive, BiCalendarAlt, BiLike, BiDislike } from 'react-icons/bi'
 
 
 function Review() {
+    const [visible, setVisible] = useState(false);
+    const handleClick = () => {
+        setVisible(!visible);
+    };
+
     return (
         <>
             <div className="my-12 pt-8 min-h-[300px]">
-                <div className="flex sticky top-0 z-[100] bg-white pt-6 border-b pb-4 justify-between item-start">
+                <div className="flex sticky top-0 z-[10] bg-white pt-6 border-b pb-4 justify-between item-start">
                     <h1 className="text-2xl font-bold">Guest Reviews</h1>
                     <div className="flex gap-4">
                         <h3 className="row-span-2 px-3 flex justify-center items-center text-white bg-primary-dark rounded-lg">8.0</h3>
@@ -33,6 +40,13 @@ function Review() {
                             ))
 
                     }
+                </div>
+                <div className=" p-4">
+                    <button
+                        className="px-4 py-2 bg-primary-dark text-white rounded-lg"
+                        onClick={handleClick}>
+                        Read all reviews
+                    </button>
                 </div>
                 <div className="grid lg:grid-cols-4 gap-8 mt-16">
                     <div className="lg:col-span-1">
@@ -149,6 +163,9 @@ function Review() {
 
                     </div>
                 </div>
+            </div>
+            <div>
+                {visible && <Reviews />}
             </div>
         </>
     )

@@ -7,10 +7,7 @@ const ReservationDetailCard = () => {
     src: "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
     alt: "Image 1",
   };
-  const [visible, setVisible] = useState(false);
-  const handleClick = () => {
-    setVisible(!visible);
-  };
+
   return (
     <>
       <div className="mt-4">
@@ -56,7 +53,7 @@ const ReservationDetailCard = () => {
               </span>
             </div>
             <div className="flex flex-col justify-between p-2 leading-normal">
-              <div className="flex flex-row mb-3" onClick={handleClick}>
+              <div className="flex flex-row mb-3">
                 <div className="flex flex-col mt-2">
                   <h5 className="text-base font-bold max-sm:text-xs">Superb</h5>
                   <h6 className="text-xs max-sm:text-xs">456 reviews</h6>
@@ -110,9 +107,6 @@ const ReservationDetailCard = () => {
           </div>
 
         </a>
-      </div>
-      <div>
-        {visible && <Reviews />}
       </div>
     </>
 

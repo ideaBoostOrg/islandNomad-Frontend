@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Button, Modal, Progress } from 'flowbite-react';
+import { Button, Modal } from 'flowbite-react';
 import ReviewCard from './reviewCard';
 import type { CustomFlowbiteTheme } from 'flowbite-react';
 import { reviews } from '@/data/availabilityPage';
@@ -8,16 +8,33 @@ import Image from "next/image"
 import { BiBed, BiTimeFive, BiCalendarAlt, BiLike, BiDislike, BiErrorCircle } from 'react-icons/bi'
 
 const customThemeForModal: CustomFlowbiteTheme['modal'] = {
+    header: {
+        base: "flex items-start justify-between rounded-t dark:border-gray-600 border-b p-5",
+        popup: "p-2 border-b-0",
+        title: "text-xl font-medium text-gray-900 dark:text-white",
+        close: {
+            base: "ml-auto hidden items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white",
+            icon: "h-5 w-5"
+        }
+    },
     content: {
-        inner: 'relative rounded-lg bg-white shadow dark:bg-gray-700 flex flex-col max-h-[96vh]',
+        base: "relative h-full w-full p-0 md:h-auto",
+        inner: 'relative rounded-0 bg-white shadow dark:bg-gray-700 flex flex-col max-h-[100vh]',
     },
 };
-
+const customThemeForModa2: CustomFlowbiteTheme['modal'] = {
+    content: {
+        base: "relative h-full w-full p-4 md:h-auto",
+        inner: 'relative rounded-0 bg-white shadow dark:bg-gray-700 flex flex-col max-h-[100vh]',
+    },
+};
 const Reviews = () => {
     const [openModal, setOpenModal] = useState<string | undefined>('default');
     const props = { openModal, setOpenModal };
     const [openModal2, setOpenReviewsWork] = useState<string | undefined>();
     const props2 = { openModal2, setOpenReviewsWork };
+    const [openModal3, setOpenWriteReviews] = useState<string | undefined>();
+    const props3 = { openModal3, setOpenWriteReviews };
     const sumOfRate = reviews.reduce((sum, item) => sum + item.rating, 0);
     const averageOfRate = sumOfRate / reviews.length;
 
@@ -44,11 +61,15 @@ const Reviews = () => {
                         </div>
                         <div className='flex flex-row' onClick={() => props2.setOpenReviewsWork('default')}>
                             <p className='font-normal text-sm  ml-5 mt-7 text-[#008009]'> <a href="#" className='hover:underline'>We aim for 100% real reviews</a></p>
-                            <BiErrorCircle className='mt-7 ml-1 text-[#008009]'/>
+                            <BiErrorCircle className='mt-7 ml-1 text-[#008009]' />
                         </div>
-                        <div className='ml-15'>
-                            {/* <Button>Write a review</Button> */}
-                        </div>
+                    </div>
+                    <div className='mt-3'>
+                        <button
+                            className="py-1 bg-primary-dark text-white rounded-lg text-sm w-3/4 max-sm:w-32"
+                            onClick={() => props3.setOpenWriteReviews('pop-up')}>
+                            Write a review
+                        </button>
                     </div>
                 </Modal.Header>
                 <Modal.Body>
@@ -134,7 +155,7 @@ const Reviews = () => {
                 show={props2.openModal2 === 'default'}
                 onClose={() => props2.setOpenReviewsWork(undefined)}
                 position={'top-center'}
-                theme={customThemeForModal}
+                theme={customThemeForModa2}
             >
                 <Modal.Header>How guest reviews work</Modal.Header>
                 <Modal.Body>
@@ -158,6 +179,45 @@ const Reviews = () => {
                 </Modal.Body>
             </Modal>
 
+            <Modal show={props3.openModal3 === 'pop-up'} size="2xl" popup onClose={() => props3.setOpenWriteReviews(undefined)}
+            >
+                <Modal.Header>
+                    <h3 className="mb-5 text-lg font-semibold">
+                        Enter your booking details
+                    </h3>
+                </Modal.Header>
+                <Modal.Body>
+
+                    <div className="flex flex-col">
+                        <div>Check your booking confirmation email to find your booking number and PIN</div>
+                        <div className='mt-2'>
+                            <label className="text-sm font-semibold  mb-1" htmlFor="">Booking number</label>
+                            <input
+                                type="text"
+                                className="w-full p-2 border border-gold-500 "
+                            />
+                        </div>
+                        <div className='mt-2'>
+                            <label className="text-sm font-semibold mb-1" htmlFor="">PIN</label>
+                            <input
+                                type="text"
+                                className="w-full p-2 border border-gold-500 "
+                            />
+                        </div>
+                        <div className='mt-4'>
+                            <button
+                                className="py-2 bg-primary-dark text-white text-sm w-full max-sm:w-32">
+                                Rate your stay
+                            </button>
+                        </div>
+                        <div className='mt-5'>
+                            <p className='text-xs'>
+                                Only a customer who has booked through Booking.com and stayed at the property in question can write a review. This lets us know that our reviews come from real guests, like you.
+                            </p>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
         </>
     )
 };

@@ -1,10 +1,13 @@
 import { containerPropType } from "@/types"
 
-function Container({ children, className }: containerPropType) {
+function Container({ children, className, style }: containerPropType) {
     return (
-        <main className={`max-w-7xl mx-auto px-4 ${className}`}>
+        <div
+            className={`max-w-7xl mx-auto px-4 ${className}`}
+            style={style}
+        >
             {children}
-        </main>
+        </div>
     )
 }
 

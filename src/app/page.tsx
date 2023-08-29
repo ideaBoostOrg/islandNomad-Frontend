@@ -36,7 +36,7 @@ export default function Home() {
 
   return (
     <Container>
-      <SearcBar/>
+      {/* <SearcBar/> */}
       <Heading headingText="Trending Destinations"/>
       <TrendingDestinations/>
       <Heading headingText="Explore Sri Lanka"/>

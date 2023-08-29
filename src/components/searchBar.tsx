@@ -1,6 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import { BiBed } from 'react-icons/bi';
 
 const SearchBar = () => {
 
@@ -17,14 +18,17 @@ const SearchBar = () => {
 
     return (
         <div className="flex flex-wrap justify-center mt-8 bg-gray-900 p-0 rounded-lg">
-            <div className="w-full md:w-2/6 p-2">
-                <input
-                    type="text"
-                    className="w-full p-2 border border-gold-500 rounded "
-                    placeholder="Location"
-                    value={searchInput1}
-                    onChange={(e) => setSearchInput1(e.target.value)}
-                />
+            <div className="w-full md:w-2/6 p-2 relative">
+                <label className="relative">
+                    <BiBed className="absolute left-2 bottom-0 h-6 w-6 text-gray-500" />
+                    <input
+                        type="text"
+                        className="w-full p-2 pl-8 border border-gold-500 rounded"
+                        placeholder="Where are you going?"
+                        value={searchInput1}
+                        onChange={(e) => setSearchInput1(e.target.value)}
+                    />
+                </label>
             </div>
             <div className="w-full md:w-2/6 p-2">
                 <input

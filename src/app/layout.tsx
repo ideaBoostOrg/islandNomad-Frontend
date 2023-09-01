@@ -12,6 +12,7 @@ import { ReduxProvider } from '@/redux/Provider'
 import { childrenPropType } from '@/types'
 
 import Navbar from './Navbar';
+import Footer from './Footer'
 
 export default function RootLayout({ children }: childrenPropType) {
   return (
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: childrenPropType) {
         <ReduxProvider>
           <Navbar />
           {children}
+          <Footer/>
         </ReduxProvider>
       </body>
     </html>

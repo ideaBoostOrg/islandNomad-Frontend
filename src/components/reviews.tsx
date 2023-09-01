@@ -1,8 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import { Button, Modal } from 'flowbite-react';
+import { Button, Modal,CustomFlowbiteTheme } from 'flowbite-react';
 import ReviewCard from './reviewCard';
-import type { CustomFlowbiteTheme } from 'flowbite-react';
 import { reviews } from '@/data/availabilityPage';
 import Image from "next/image"
 import { BiBed, BiTimeFive, BiCalendarAlt, BiLike, BiDislike, BiErrorCircle } from 'react-icons/bi'

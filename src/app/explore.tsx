@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -62,12 +62,31 @@ const ImageGrid = () => {
       properties: 347,
     },
   ];
+
+  const [slidesToShow, setSlidesToShow] = useState(2);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 500) {
+        setSlidesToShow(2);
+      } else {
+        setSlidesToShow(5);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   var settings = {
-    dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1
+    slidesToShow: slidesToShow,
+    slidesToScroll: 1,
+    autoplay:true,
+    autoplaySpeed:2500
   };
   return (
     <div className="container mx-auto px-4 ">

@@ -3,7 +3,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 // import axios from "axios";
 import countryData from "./countryCodes.json";
-
+import CheckOutSidePanelHotelDetails from '../../../components/checkOutSidePanelHotelDetails'
+import CheckOutSidePanelBookingDetails from '../../../components/checkOutSidePanelBookingDetails'
+import CheckOutSidePanelPriceSummary from "@/components/checkOutSidePanelPriceSummary"
 import { useRouter } from "next/navigation";
 
 interface Country {
@@ -25,65 +27,15 @@ const SideBySideForms = () => {
     <div className="max-w-6xl mx-auto mt-2 flex flex-col md:flex-row md:space-x-4">
       {/* Left Form (1/3 screen size) */}
       <div className="bg-white rounded-lg p-4 flex-1 mb-4 md:mb-0 md:w-1/3">
-        <div className="max-w-3xl mx-auto mt-8 p-4 bg-white rounded-lg shadow-md">
-          <h2 className="text-md font-semibold mb-4">Tea Mount Forest</h2>
-          <form>
-            <div className="mb-2">
-              <label className="block text-sm font-medium text-gray-700">
-                No:33, Rose Garden, Katumana, Nuwara Eliya Nuwara Eliya, 22200
-                Nuwara Eliya, Sri Lanka
-              </label>
-              {/* <div className="mt-1">
-                <label className="inline-flex items-center">
-                  
-                </label>
-              </div> */}
-            </div>
-          </form>
-        </div>
-
-        <div className="max-w-3xl mx-auto mt-8 p-4 bg-white rounded-lg shadow-md">
-          <h2 className="text-md font-semibold mb-4">Your Booking Details</h2>
-          <form>
-            <div className="mb-2">
-              <label className="block text-sm font-medium text-gray-700">
-                Check-in : <b>Sun 20 Aug 2023</b>
-              </label>
-              <label className="block text-sm font-medium text-gray-700">
-                Check-out : <b>Mon 21 Aug 2023</b>
-              </label>
-              <label className="block text-sm font-medium text-gray-700">
-                The length of stay : <b>1 night</b>
-              </label>
-              {/* <div className="mt-1">
-                <label className="inline-flex items-center">
-                  
-                </label>
-              </div> */}
-            </div>
-          </form>
-        </div>
-
-        <div className="max-w-3xl mx-auto mt-8 p-4 bg-white rounded-lg shadow-md">
-          <h2 className="text-md font-semibold mb-4">Your Price Summary</h2>
-          <form>
-            <div className="mb-2">
-              <label className="block text-sm font-medium text-gray-700">
-                Original Price: <b>LKR 19,025.10</b>
-              </label>
-              <label className="block text-sm font-medium text-gray-700">
-                Limited-Time Deal : <b>- LKR 7,610.04</b>
-              </label>
-              <label className="block text-sm font-medium text-gray-700">
-                The length of stay : <b>1 night</b>
-              </label>
-              <label className="block text-md mt-2 mb-0 font-md font-bold text-gray-700">
-                Total Price : <b>LKR 11,415.06</b>
-              </label>
-            </div>
-          </form>
-        </div>
+      <CheckOutSidePanelHotelDetails/>
+        <CheckOutSidePanelBookingDetails/>
+        <CheckOutSidePanelPriceSummary/>
       </div>
+
+        
+
+        
+      
       {/* Small Gap */}
       <div className="hidden md:block w-4"></div>{" "}
       {/* Small gap between forms on medium-sized screens and larger */}

@@ -1,144 +1,160 @@
 'use client';
 import React, { useState } from 'react';
-import { Button, Modal, Progress } from 'flowbite-react';
+import { Button, Modal,CustomFlowbiteTheme } from 'flowbite-react';
 import ReviewCard from './reviewCard';
+import { reviews } from '@/data/availabilityPage';
+import Image from "next/image"
+import { BiBed, BiTimeFive, BiCalendarAlt, BiLike, BiDislike, BiErrorCircle } from 'react-icons/bi'
 
+const customThemeForModal: CustomFlowbiteTheme['modal'] = {
+    header: {
+        base: "flex items-start justify-between rounded-t dark:border-gray-600 border-b p-5",
+        popup: "p-2 border-b-0",
+        title: "text-xl font-medium text-gray-900 dark:text-white",
+        close: {
+            base: "ml-auto hidden items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white",
+            icon: "h-5 w-5"
+        }
+    },
+    content: {
+        base: "relative h-full w-full p-0 md:h-auto",
+        inner: 'relative rounded-0 bg-white shadow dark:bg-gray-700 flex flex-col max-h-[100vh]',
+    },
+};
+const customThemeForModa2: CustomFlowbiteTheme['modal'] = {
+    content: {
+        base: "relative h-full w-full p-4 md:h-auto",
+        inner: 'relative rounded-0 bg-white shadow dark:bg-gray-700 flex flex-col max-h-[100vh]',
+    },
+};
 const Reviews = () => {
     const [openModal, setOpenModal] = useState<string | undefined>('default');
     const props = { openModal, setOpenModal };
     const [openModal2, setOpenReviewsWork] = useState<string | undefined>();
     const props2 = { openModal2, setOpenReviewsWork };
+    const [openModal3, setOpenWriteReviews] = useState<string | undefined>();
+    const props3 = { openModal3, setOpenWriteReviews };
+    const sumOfRate = reviews.reduce((sum, item) => sum + item.rating, 0);
+    const averageOfRate = sumOfRate / reviews.length;
 
     return (
         <>
             <Modal show={props.openModal === 'default'} onClose={() => props.setOpenModal(undefined)}
                 position={'top-right'}
                 size={'5xl'}
+                theme={customThemeForModal}
             >
                 <Modal.Header
                 >
                     <div className="flex flex-row">
-                        <div className="flex flex-row">
-                            <div>
-                                <svg
-                                    className="w-10 h-10 text-[#187B92]"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="currentColor"
-                                    viewBox="0 0 22 20"
-                                >
-                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    <text x="50%" y="60%" textAnchor="middle" fill="white" fontSize="6">
-                                        4.5
-                                    </text>
-                                </svg>
+                        <div className="flex gap-3 items-center">
+                            <div className="">
+                                <div className="w-10 h-10 flex justify-center items-center bg-primary-dark text-white rounded-lg text-sm">
+                                    {averageOfRate.toFixed(1)}
+                                </div>
                             </div>
-                            <div className="flex flex-col mt-2">
-                                <h5 className="text-base font-bold">Superb</h5>
-                                <h6 className="text-xs" >456 reviews</h6>
+                            <div className="">
+                                <h2 className="text-base font-semibold">Superb</h2>
+                                <p className="text-xs text-gray-500">{reviews.length} reviews</p>
                             </div>
                         </div>
                         <div className='flex flex-row' onClick={() => props2.setOpenReviewsWork('default')}>
-                            <p className='font-normal text-sm  ml-5 mt-7 text-[#187B92]'> <a href="#" className='hover:underline'>We aim for 100% real reviews</a></p>
-                            <svg className="w-4 h-4 text-gray-800 dark:text-white mt-7 mx-1 cursor-pointer " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                            </svg>
+                            <p className='font-normal text-sm  ml-5 mt-7 text-[#008009]'> <a href="#" className='hover:underline'>We aim for 100% real reviews</a></p>
+                            <BiErrorCircle className='mt-7 ml-1 text-[#008009]' />
                         </div>
-                        <div className='ml-15'>
-                            {/* <Button>Write a review</Button> */}
-                        </div>
+                    </div>
+                    <div className='mt-3'>
+                        <button
+                            className="py-1 bg-primary-dark text-white rounded-lg text-sm w-3/4 max-sm:w-32"
+                            onClick={() => props3.setOpenWriteReviews('pop-up')}>
+                            Write a review
+                        </button>
                     </div>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
                         <span className='font-semibold'>Categories:</span>
-                        <div className='flex flex-col'>
-                            <div className="flex flex-row w-full">
-                                <div className='w-1/3 mx-1'>
-                                    <Progress
-                                        labelProgress
-                                        labelText
-                                        progress={50}
-                                        size="lg"
-                                        textLabel="Staff"
-                                        textLabelPosition="outside"
-                                    />
-                                </div>
-                                <div className='w-1/3 mx-1'>
-                                    <Progress
-                                        labelProgress
-                                        labelText
-                                        progress={50}
-                                        size="lg"
-                                        textLabel="Facilities"
-                                        textLabelPosition="outside"
-                                    />
-                                </div>
-                                <div className='w-1/3 mx-1'>
-                                    <Progress
-                                        labelProgress
-                                        labelText
-                                        progress={50}
-                                        size="lg"
-                                        textLabel="Cleanliness"
-                                        textLabelPosition="outside"
-                                    />
-                                </div>
-                            </div>
-                            <div className="flex flex-row w-full mt-8">
-                                <div className='w-1/3 mx-1'>
-                                    <Progress
-                                        labelProgress
-                                        labelText
-                                        progress={50}
-                                        size="lg"
-                                        textLabel="Comfort"
-                                        textLabelPosition="outside"
-                                    />
-                                </div>
-                                <div className='w-1/3 mx-1'>
-                                    <Progress
-                                        labelProgress
-                                        labelText
-                                        progress={90}
-                                        size="lg"
-                                        textLabel="Value for money"
-                                        textLabelPosition="outside"
-                                    />
-                                </div>
-                                <div className='w-1/3 mx-1'>
-                                    <Progress
-                                        labelProgress
-                                        labelText
-                                        progress={50}
-                                        size="lg"
-                                        textLabel="Location"
-                                        textLabelPosition="outside"
-                                    />
-                                </div>
-                            </div>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8 mt-12">
+                            {
+                                [{ name: 'Staff', value: 70 }, { name: 'Cleanliness', value: 75 }, { name: 'Comfort', value: 98 }, { name: 'Location', value: 84 }, { name: 'Facilities', value: 25 }, { name: 'Value for money', value: 67 }]
+                                    .map((category, index) => (
+                                        <div key={index} className="flex flex-col gap-2 mb-2">
+                                            <div className="flex justify-between text-sm">
+                                                <p>{category.name}</p>
+                                                <p className="font-semibold">{category.value}%</p>
+                                            </div>
+                                            <div className="w-full h-3 rounded-xl bg-gray-200 overflow-hidden">
+                                                <div className="h-full rounded-xl bg-primary-dark" style={{ width: `${category.value}%` }}></div>
+                                            </div>
+                                        </div>
+                                    ))
+
+                            }
                         </div>
                     </div>
+
                     <div className='flex flex-col mt-5 border-t-4 border-black-1'>
-                        {Array.from({ length: 2 }, (_, index) => (
-                            // eslint-disable-next-line react/jsx-key
-                            <ReviewCard />
-                        ))}
+                        <div className="lg:col-span-3 flex flex-col gap-6">
+                            {
+                                reviews.map(review => (
+                                    <div key={review.id} className="flex flex-col lg:flex-row gap-6 border-b-2 p-4 min-h-[150px] mb-6">
+
+                                        <div className="flex justify-between lg:justify-start lg:flex-col lg:gap-3 min-w-[200px] px-4 border-r-2">
+
+                                            <div className="flex gap-3 items-center">
+                                                <div className="w-10 h-10 overflow-hidden rounded-full">
+                                                    <Image width={200} height={200} className="w-full h-full object-cover" src={review?.user?.avatar} alt={review?.user?.name} />
+                                                </div>
+                                                <div className="">
+                                                    <h2 className="text-md font-semibold">{review?.user?.name}</h2>
+                                                    <p className="text-sm text-gray-500">{review?.user?.country}</p>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex flex-col">
+                                                <p className="flex items-center gap-4 text-sm text-gray-600"><BiBed /> {review?.roomType}</p>
+                                                <p className="flex items-center gap-4 text-sm text-gray-600"><BiCalendarAlt /> {review?.date}</p>
+                                                <p className="flex items-center gap-4 text-sm text-gray-600"><BiTimeFive /> {review?.duration}</p>
+                                            </div>
+
+                                        </div>
+
+                                        <div className="grow flex flex-col justify-between gap-4">
+                                            <div className='flex flex-row justify-between'>
+                                                <span className='text-xs text-gray-600'>Reviewed : 3 july 2023</span>
+                                                <div className="w-10 h-10 flex justify-center items-center bg-primary-dark text-white rounded-lg text-sm">
+                                                    {review.rating}
+                                                </div>
+                                            </div>
+                                            <div className="">
+                                                <h1 className="text-lg font-semibold mb-2">{review.title}</h1>
+                                                <p className="text-md">{review.description}</p>
+                                            </div>
+                                            <div className="flex justify-between">
+                                                <div className='mr-8'>
+                                                    <span className='text-xs'><b>1 person </b>found this review helpful.</span>
+                                                </div>
+                                                <div className="flex gap-6">
+                                                    <button className="text-blue-700 font-semibold text-sm flex gap-2 items-center">Helpful <BiLike /></button>
+                                                    <button className="text-blue-700 font-semibold text-sm flex gap-2 items-center">Not Helpful <BiDislike /></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+
+                        </div>
                     </div>
 
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={() => props.setOpenModal(undefined)}>I accept</Button>
-                    <Button color="gray" onClick={() => props.setOpenModal(undefined)}>
-                        Decline
-                    </Button>
-                </Modal.Footer>
             </Modal>
 
             <Modal
-            show={props2.openModal2 === 'default'} 
-            onClose={() => props2.setOpenReviewsWork(undefined)}
+                show={props2.openModal2 === 'default'}
+                onClose={() => props2.setOpenReviewsWork(undefined)}
                 position={'top-center'}
+                theme={customThemeForModa2}
             >
                 <Modal.Header>How guest reviews work</Modal.Header>
                 <Modal.Body>
@@ -162,6 +178,45 @@ const Reviews = () => {
                 </Modal.Body>
             </Modal>
 
+            <Modal show={props3.openModal3 === 'pop-up'} size="2xl" popup onClose={() => props3.setOpenWriteReviews(undefined)}
+            >
+                <Modal.Header>
+                    <h3 className="mb-5 text-lg font-semibold">
+                        Enter your booking details
+                    </h3>
+                </Modal.Header>
+                <Modal.Body>
+
+                    <div className="flex flex-col">
+                        <div>Check your booking confirmation email to find your booking number and PIN</div>
+                        <div className='mt-2'>
+                            <label className="text-sm font-semibold  mb-1" htmlFor="">Booking number</label>
+                            <input
+                                type="text"
+                                className="w-full p-2 border border-gold-500 "
+                            />
+                        </div>
+                        <div className='mt-2'>
+                            <label className="text-sm font-semibold mb-1" htmlFor="">PIN</label>
+                            <input
+                                type="text"
+                                className="w-full p-2 border border-gold-500 "
+                            />
+                        </div>
+                        <div className='mt-4'>
+                            <button
+                                className="py-2 bg-primary-dark text-white text-sm w-full max-sm:w-32">
+                                Rate your stay
+                            </button>
+                        </div>
+                        <div className='mt-5'>
+                            <p className='text-xs'>
+                                Only a customer who has booked through Booking.com and stayed at the property in question can write a review. This lets us know that our reviews come from real guests, like you.
+                            </p>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
         </>
     )
 };

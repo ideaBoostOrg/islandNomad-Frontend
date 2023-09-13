@@ -1,10 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import Container from "@/components/Container"
-import { Button, CustomFlowbiteTheme, Toast } from 'flowbite-react';
+import { Button, CustomFlowbiteTheme, Dropdown, Toast } from 'flowbite-react';
 import { useState } from "react";
-import { FaHome, FaBuilding, FaHotel, FaTree } from 'react-icons/fa';
+import { FaHome, FaBuilding, FaHotel, FaTree, FaCheckCircle } from 'react-icons/fa';
 import { BsHousesFill } from "react-icons/bs";
 import { MdArrowBackIosNew } from "react-icons/md";
+import { BiLike } from "react-icons/bi";
+import { HiOutlineLightBulb } from "react-icons/hi";
 
 function PropertyList() {
     const cardsDetails = [
@@ -30,15 +32,65 @@ function PropertyList() {
         },
     ]
 
+    const hotelAndMoreProperties = [
+        {
+            title: 'Hotel',
+            description: 'Accommodation for travellers often offering restaurants, meeting rooms and other guest services'
+        },
+        {
+            title: 'Guest house',
+            description: 'Private home with separate living facilities for host and guest'
+        },
+        {
+            title: 'Bed and breakfast',
+            description: 'Private home offering overnight stays and breakfast'
+        },
+        {
+            title: 'Homestay',
+            description: 'A shared home where the guest has a private room and the host lives and is on site. Some facilities are shared between hosts and guests.'
+        },
+        {
+            title: 'Hostel',
+            description: 'Budget accommodation with mostly dorm-style bedding and a social atmosphere'
+        },
+        {
+            title: 'Aparthotel',
+            description: 'A self-catering apartment with some hotel facilities like a reception desk'
+        },
+        {
+            title: 'Capsule hotel',
+            description: 'Extremely small units or capsules offering cheap and basic overnight accommodation'
+        },
+        {
+            title: 'Country house',
+            description: 'Private home with simple accommodation in the countryside'
+        },
+        {
+            title: 'Farm stay',
+            description: 'Private farm with simple accommodation'
+        }
+    ]
+
     const customThemeForToast: CustomFlowbiteTheme['toast'] = {
         root: {
             base: "flex w-full max-w-xs items-center border-solid border-2 bg-[#12353d2e] p-4 text-black shadow dark:bg-gray-800 dark:text-gray-400",
         },
     };
+    const iconStyle: React.CSSProperties = {
+        position: 'absolute',
+        right: '-10px',
+        top: '-10px',
+        width: '20px',
+    };
 
     const [isPropertyListVisible, setPropertyListVisible] = useState(true);
     const handleListPropertyClick = () => {
         setPropertyListVisible(false);
+    };
+
+    const [checkMark, setCheckMark] = useState(true);
+    const selectListProperty = (value: boolean | ((prevState: boolean) => boolean)) => {
+        setCheckMark(value);
     };
     return (
         <Container>
@@ -85,29 +137,178 @@ function PropertyList() {
                 )}
                 {!isPropertyListVisible && (
 
-                    <div className="flex flex-col mt-5 w-1/2">
-                        <div className=" text-xl">How many hotels are you listing?</div>
-                        <div className="mt-5">
-                            <div className="flex flex-col justify-between w-full p-6 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
-                                <div className="flex flex-row justify-between w-full p-6 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
-                                    <div><FaHome className="text-6xl" /></div>
-                                    <div><p>One hotel with one or multiple rooms that guests can book</p></div>
-                                </div>
-                                <div className="flex flex-row justify-between w-full p-6 mt-5 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
-                                    <div><BsHousesFill className="text-6xl mr-2" /></div>
-                                    <div><p>Multiple hotels with one or multiple rooms that guests can book</p></div>
+                    // <div className="flex flex-col mt-5 w-1/2">
+                    //     <div className=" text-xl">How many hotels are you listing?</div>
+                    //     <div className="mt-5">
+                    //         <div className="flex flex-col justify-between w-full p-6 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
+                    //             <div
+                    //                 className={`flex flex-row justify-between w-full p-6 bg-white cursor-pointer ${checkMark ? 'border-2 border-blue-500' : 'border-2 border-gray-200'
+                    //                     } shadow dark:bg-gray-800 dark:border-gray-700`}
+                    //                 style={{ position: 'relative' }}
+                    //                 onClick={() => selectListProperty(true)}>
+                    //                 {(checkMark &&
+                    //                     <FaCheckCircle style={iconStyle} className="text-xl text-blue-500" />
+                    //                 )}
+                    //                 <div><FaHome className="text-6xl" /></div>
+                    //                 <div><p>One hotel with one or multiple rooms that guests can book</p></div>
+                    //             </div>
+                    //             <div
+                    //                 className={`flex flex-row justify-between w-full p-6 mt-5 bg-white cursor-pointer ${!checkMark ? 'border-2 border-blue-500' : 'border-2 border-gray-200'
+                    //                     } shadow dark:bg-gray-800 dark:border-gray-700`}
+                    //                 style={{ position: 'relative' }}
+                    //                 onClick={() => selectListProperty(false)}>
+                    //                 {(!checkMark &&
+                    //                     <FaCheckCircle style={iconStyle} className="text-xl text-blue-500" />
+                    //                 )}
+                    //                 <div><BsHousesFill className="text-6xl mr-2" /></div>
+                    //                 <div><p>Multiple hotels with one or multiple rooms that guests can book</p></div>
+                    //             </div>
+                    //         </div>
+                    //     </div>
+                    //     <div className="flex-start flex gap-2 mt-10">
+                    //         <button className="px-4 py-2 w-1/6 bg-primary-dark text-white rounded-sm text-2xl">
+                    //             <MdArrowBackIosNew />
+                    //         </button>
+                    //         <button className="px-4 py-2 w-full bg-primary-dark text-white rounded-sm">
+                    //             Continue
+                    //         </button>
+                    //     </div>
+                    // </div>
+
+                    // <div className="flex flex-col mt-5 w-5/6">
+                    //     <div className=" text-xl">From the list below, which property category is most similar to your place?</div>
+                    //     <div className="mt-5">
+                    //         <div className="mt-5 grid grid-cols-3 gap-4 p-6 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
+                    //             {hotelAndMoreProperties.map((property, index) => (
+                    //                 <div
+                    //                     key={index}
+                    //                     className={`flex flex-col p-6 bg-white cursor-pointer ${checkMark ? "border-2 border-blue-500" : "border-2 border-gray-200"
+                    //                         } shadow dark:bg-gray-800 dark:border-gray-700`}
+                    //                     style={{ position: "relative" }}
+                    //                     onClick={() => selectListProperty(false)}
+                    //                 >
+                    //                     {checkMark && (
+                    //                         <FaCheckCircle
+                    //                             style={iconStyle}
+                    //                             className="text-xl text-blue-500" />
+                    //                     )}
+                    //                     <div className="mb-2 mt-3 text-base font-bold tracking-tight text-gray-900 dark:text-white">{property.title}</div>
+                    //                     <div>
+                    //                         <p className="font-normal text-gray-700 dark:text-gray-400 ">{property.description}</p>
+                    //                     </div>
+                    //                 </div>
+                    //             ))}
+                    //         </div>
+                    //     </div>
+                    //     <div className="flex-start flex gap-2 mt-10">
+                    //         <button className="px-4 py-2 w-1/6 bg-primary-dark text-white rounded-sm text-2xl">
+                    //             <MdArrowBackIosNew />
+                    //         </button>
+                    //         <button className="px-4 py-2 w-full bg-primary-dark text-white rounded-sm">
+                    //             Continue
+                    //         </button>
+                    //     </div>
+                    // </div>
+
+                    // <div className="flex flex-col mt-5 w-1/2">
+                    //     <div className=" text-xl">Pin the location of your property</div>
+                    //     <div className="mt-5">
+                    //         <div className="flex flex-col justify-between w-full p-6 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
+                    //             <div>
+                    //                 <p className="font-normal text-gray-700 dark:text-gray-400 ">This is the location we'll show to guests on our site. Drag the map so the pin matches the exact location of your place. </p>
+                    //             </div>
+                    //             <div className="mt-2">
+                    //                 <iframe width="100%" height="350px" src="https://maps.google.com/maps?q=<?php echo $gig['addressLine1'] . ', ' . $gig['addressLine2'] . ', ' . $gig['city'] . ', ' . $gig['district'] ?>&output=embed&fullscreen=true&zoom=20"></iframe>
+
+                    //             </div>
+                    //         </div>
+                    //     </div>
+                    //     <div className="flex-start flex gap-2 mt-10">
+                    //         <button className="px-4 py-2 w-1/6 bg-primary-dark text-white rounded-sm text-2xl">
+                    //             <MdArrowBackIosNew />
+                    //         </button>
+                    //         <button className="px-4 py-2 w-full bg-primary-dark text-white rounded-sm">
+                    //             Continue
+                    //         </button>
+                    //     </div>
+                    // </div>
+                    <div className="flex flex-row">
+                        <div className="flex flex-col mt-5 w-1/2">
+                            <div className=" text-xl">Where is the property you're listing?</div>
+                            <div className="mt-5">
+                                <div className="flex flex-col justify-between w-full p-6 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
+                                    <div>
+                                        <label className="font-semibold">Country/region</label>
+                                        <select className="w-full mt-2" name="country" id="country">
+                                            <option value="">Sri lanka</option>
+                                            <option value="xa">Abkhazia</option>
+                                            <option value="af">Afghanistan</option>
+                                            <option value="al">Albania</option>
+                                            <option value="dz">Algeria</option>
+                                            <option value="as">American Samoa</option>
+                                        </select>
+                                    </div>
+                                    <div className="mt-5">
+                                        <label className="font-semibold">Country/region</label>
+                                        <input type="text" placeholder="Start typing your address" className="w-full mt-2"></input>
+                                    </div>
                                 </div>
                             </div>
+                            <div className="flex-start flex gap-2 mt-10">
+                                <button className="px-4 py-2 w-full bg-primary-dark text-white rounded-sm">
+                                    Continue
+                                </button>
+                            </div>
                         </div>
-                        <div className="flex-start flex gap-2 mt-10">
-                            <button className="px-4 py-2 w-1/6 bg-primary-dark text-white rounded-sm text-2xl">
-                                <MdArrowBackIosNew/>
-                            </button>
-                            <button className="px-4 py-2 w-full bg-primary-dark text-white rounded-sm">
-                                Continue
-                            </button>
+
+                        <div className="flex flex-col ml-4">
+                            <div className="mt-16">
+                                <Toast className="" >
+                                    <div className="flex items-start">
+                                        <div className="ml-3 text-sm font-normal">
+                                            <div className="flex flex-row">
+                                                <BiLike className="text-2xl mr-1" />
+                                                <span className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+                                                    What needs to be included in my address?
+                                                </span>
+                                            </div>
+
+                                            <div className="mb-2 mt-2 text-sm font-normal">
+                                                <ul style={{ listStyleType: 'disc', color: 'black' }}>
+                                                    <li>Include both your street name and number for the entire property</li>
+                                                    <li>The floor number in address line 2 where relevant</li>
+                                                    <li>Individual apartment or floor numbers can be shared later</li>
+                                                    <li>Provide the post/zip code</li>
+                                                    <li>Correctly spell the street name</li>
+                                                    <li>Use the physical address of the property, not your office or home address</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <Toast.Toggle />
+                                    </div>
+                                </Toast>
+                            </div>
+                            <div className="mt-4">
+                                <Toast className="">
+                                    <div className="flex items-start">
+                                        <div className="ml-3 text-sm font-normal">
+                                            <div className="flex flex-row">
+                                                <HiOutlineLightBulb className="text-2xl mr-1" />
+                                                <span className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+                                                    Why do I need to add my address?
+                                                </span>
+                                            </div>
+                                            <div className="mb-2 mt-2 text-sm font-normal">
+                                                Once a guest books your property, this is the address that will be shared with them. It's important that it is correct so that guests can easily find your property.
+                                            </div>
+                                        </div>
+                                        <Toast.Toggle />
+                                    </div>
+                                </Toast>
+                            </div>
                         </div>
                     </div>
+
                 )}
                 <div className="mt-10">
                     <Toast className="fixed bottom-2 right-2 p-4" theme={customThemeForToast}>

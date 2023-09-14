@@ -109,12 +109,12 @@ function PropertyList() {
     };
     const [isPropertyListVisible3, setPropertyListVisible3] = useState(false);
     const handleListPropertyClick3 = (action: string) => {
-        if(action === 'back') {
+        if (action === 'back') {
             setPropertyListVisible3(false);
             setPropertyListVisible1(true);
 
         }
-        if(action === 'Continue')   {
+        if (action === 'Continue') {
             setPropertyListVisible3(false);
             setPropertyListVisible2(true);
         }
@@ -137,10 +137,22 @@ function PropertyList() {
     const selectListProperty = (value: boolean | ((prevState: boolean) => boolean)) => {
         setCheckMark(value);
     };
+
+    const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
+
+    const toggleSelectProperty = (index: number) => {
+      if (selectedIndices.includes(index)) {
+        setSelectedIndices(selectedIndices.filter((i) => i !== index));
+      } else {
+        setSelectedIndices([...selectedIndices, index]);
+      }
+    };
+
     return (
         <Container>
-            {/* propertyListContainer1 */}
             <div className="flex flex-col">
+
+                {/* propertyListContainer1 */}
                 {isPropertyListVisible1 && (
                     <div className="">
                         <div className="font-normal text-xl mt-5">
@@ -229,33 +241,40 @@ function PropertyList() {
                         <div className=" text-xl">From the list below, which property category is most similar to your place?</div>
                         <div className="mt-5">
                             <div className="mt-5 grid grid-cols-3 gap-4 p-6 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
-                                {hotelAndMoreProperties.map((property, index) => (
+                                {hotelAndMoreProperties.map((property, index: number) => (
                                     <div
                                         key={index}
-                                        className={`flex flex-col p-6 bg-white cursor-pointer ${checkMark ? "border-2 border-blue-500" : "border-2 border-gray-200"} shadow dark:bg-gray-800 dark:border-gray-700`}
+                                        className={`flex flex-col p-6 bg-white cursor-pointer ${selectedIndices.includes(index) ? "border-2 border-blue-500" : "border-2 border-gray-200"} shadow dark:bg-gray-800 dark:border-gray-700`}
                                         style={{ position: "relative" }}
-                                        onClick={() => selectListProperty(false)}
+                                        onClick={() => toggleSelectProperty(index)}
                                     >
-                                        {checkMark && (
+                                        {selectedIndices.includes(index) && (
                                             <FaCheckCircle
                                                 style={iconStyle}
-                                                className="text-xl text-blue-500" />
+                                                className="text-xl text-blue-500"
+                                            />
                                         )}
-                                        <div className="mb-2 mt-3 text-base font-bold tracking-tight text-gray-900 dark:text-white">{property.title}</div>
+                                        <div className={`mb-2 mt-3 text-base font-bold tracking-tight text-gray-900 dark:text-white`}>
+                                            {property.title}
+                                        </div>
                                         <div>
-                                            <p className="font-normal text-gray-700 dark:text-gray-400 ">{property.description}</p>
+                                            <p className="font-normal text-gray-700 dark:text-gray-400">
+                                                {property.description}
+                                            </p>
                                         </div>
                                     </div>
                                 ))}
+
+
                             </div>
                         </div>
                         <div className="flex-start flex gap-2 mt-10">
                             <button className="px-4 py-2 w-1/6 bg-primary-dark text-white rounded-sm text-2xl"
-                            onClick={()=>handleListPropertyClick3('back')}>
+                                onClick={() => handleListPropertyClick3('back')}>
                                 <MdArrowBackIosNew />
                             </button>
-                            <button className="px-4 py-2 w-full bg-primary-dark text-white rounded-sm" 
-                            onClick={()=>handleListPropertyClick3('Continue')}>
+                            <button className="px-4 py-2 w-full bg-primary-dark text-white rounded-sm"
+                                onClick={() => handleListPropertyClick3('Continue')}>
                                 Continue
                             </button>
                         </div>

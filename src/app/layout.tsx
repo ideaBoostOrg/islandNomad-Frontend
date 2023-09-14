@@ -18,7 +18,6 @@ import Footer from './Footer'
 
 export default function RootLayout({ children }: childrenPropType) {
   const pathname = usePathname() 
-  console.log('Current Path:', pathname);
   if ( pathname === '/') {
     return (
       <html lang="en">

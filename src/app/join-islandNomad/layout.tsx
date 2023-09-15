@@ -4,10 +4,10 @@ import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: 'Island Nomad',
-  description: 'Island Nomad',
-}
+// export const metadata: Metadata = {
+//   title: 'Island Nomad',
+//   description: 'Island Nomad',
+// }
 import { ReduxProvider } from '@/redux/Provider'
 import { childrenPropType } from '@/types'
 import Navbar from '../searchresults/Navbar'
